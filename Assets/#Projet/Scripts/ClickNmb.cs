@@ -11,18 +11,21 @@ public class ClickNmb : MonoBehaviour
     public TextMeshProUGUI counter;
     public TextMeshProUGUI HighScoreText;
     public string hiScorePref = "HighscoreNbr";
-    GameManager manager;
     
     public void Clicked(){
         ClickCount++;
+        GameManager.instance.score = ClickCount;
         counter.text = ClickCount.ToString();
+
     }
 
     public void Start(){
 
             HighScore = PlayerPrefs.GetInt(hiScorePref,0);
             UpdateHighScoreText();
-            manager = FindObjectOfType<GameManager>();
+            ClickCount = GameManager.instance.score;
+            counter.text = ClickCount.ToString();
+
     }
 
     public void Done(){
